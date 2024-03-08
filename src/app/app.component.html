@@ -1,0 +1,68 @@
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+  <a
+    href="/"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+  >
+    <svg class="bi me-2" width="40" height="32">
+      <use xlink:href="#bootstrap" />
+    </svg>
+    <span class="fs-4">Gestion Etudiant</span>
+  </a>
+
+</header>
+
+<div class="mt-5">
+    <div class="row">
+        <div class="col-md-4 " >
+            <form [formGroup]="myForm" (ngSubmit)="enregistrer()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Prenom</label>
+                  <input type="text" class="form-control" formControlName="firstname" >
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nom</label>
+                  <input type="text" class="form-control" formControlName="lastname" >
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputtext1" class="form-label">Matricule</label>
+                  <input type="text" class="form-control" formControlName="matricule">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputtext1" class="form-label">Département</label>
+                  <select name="" class="form-control" id="" formControlName="departement">
+                        <option *ngFor="let  dept of departements " value="{{dept._id}}">{{dept.name}}</option>
+                  </select>
+                </div>
+               
+                <button type="submit" class="btn btn-primary" [disabled]="this.myForm.invalid"> Enregistrer</button>
+              </form>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Département</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let etudiant of etudiants">
+                    <th scope="row">{{etudiant._id}}</th>
+                    <td>{{etudiant.firstname}}</td>
+                    <td>{{etudiant.lastname}}</td>
+                    <td>{{etudiant.matricule}}</td>
+                    <td>{{etudiant.departement.name}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
